@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo"); 
 const GitHubStrategy = require("passport-github2").Strategy;
 const LocalStrategy = require("passport-local");
 
@@ -26,29 +26,36 @@ app.use(express.static("public"));
 
 /* ================= SESSION ================= */
 
-const store = new MongoStore({
-    url: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/campus",
-    touchAfter: 24 * 3600, // 1 day
-    autoRemove: 'native'   // optional
+
+const store = MongoStore.create({
+  mongoUrl: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/campus",
+  touchAfter: 24 * 3600, // 1 day
+  crypto: {
+    secret: process.env.SECRET || "hackathon-secret",
+  },
 });
 
 store.on("error", function (err) {
-    console.log("SESSION STORE ERROR:", err);
+  console.log("SESSION STORE ERROR:", err);
 });
 
-app.use(session({
-    store: store,
+app.set("trust proxy", 1); // 🔥 Required for HTTPS on Render
+
+app.use(
+  session({
+    store,
     name: "session",
     secret: process.env.SECRET || "hackathon-secret",
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // Render HTTPS
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
-    }
-}));
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // HTTPS on Render
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+    },
+  })
+);
 
 /* ================= FLASH ================= */
 const flash = require("connect-flash");
