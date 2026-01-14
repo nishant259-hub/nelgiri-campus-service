@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const GitHubStrategy = require("passport-github2").Strategy;
 const LocalStrategy = require("passport-local");
 
@@ -24,14 +25,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 /* ================= SESSION ================= */
-app.use(
-  session({
-    secret: "hackathon-secret",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-
+app.use(session({
+  secret: process.env.SESSION_SECRET || "hackathon-secret",
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 3600, // update session once per day
+  }),
+  cookie: {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+  }
+}));
 /* ================= FLASH ================= */
 const flash = require("connect-flash");
 app.use(flash());
