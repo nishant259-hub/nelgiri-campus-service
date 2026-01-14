@@ -1,0 +1,85 @@
+.complaint-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.empty-text {
+  text-align: center;
+  color: #777;
+  margin-top: 40px;
+}
+
+.complaint-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-left: 6px solid #4f46e5;
+}
+
+.complaint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.complaint-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #222;
+}
+
+.complaint-desc {
+  margin: 12px 0 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Footer */
+.complaint-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Status badges */
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.resolved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status.inprogress {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.status-select {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  cursor: pointer;
+}

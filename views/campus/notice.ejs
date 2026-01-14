@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Notices</title>
+  <link rel="stylesheet" href="/css/notice.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://kit.fontawesome.com/a13f7f6ee4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <%- include("../include/navbar") %>
+
+  <div class="container notice-container">
+    <h2 class="page-title">Campus Notices</h2>
+
+    <div class="notice-grid">
+      <% if (allnotice.length === 0) { %>
+        <p class="no-notice">No notices found.</p>
+      <% } else { %>
+        <% allnotice.forEach(notice => { %>
+          <div class="notice-card">
+            <% if (notice.imageUrl) { %>
+              <img src="<%= notice.imageUrl %>" alt="<%= notice.title %>" class="notice-img">
+            <% } %>
+
+            <div class="notice-content">
+              <h3 class="notice-title"><%= notice.title %></h3>
+              <p class="notice-description"><%= notice.description %></p>
+              <p class="notice-meta">
+                <span class="category"><%= notice.category %></span> |
+                <span class="date"><%= notice.createdAt.toDateString() %></span>
+              </p>
+
+              <% if (currUser && currUser.role === "admin") { %>
+                <div class="notice-actions">
+                  <form action="/notice/<%= notice._id %>?_method=DELETE" method="POST" class="delete-form">
+                    <button type="submit" class="btn-delete">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </form>
+                </div>
+              <% } %>
+
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+
+    <% if (showCreateNotice) { %>
+      <div class="add-notice-btn">
+        <a href="/notice/new" class="btn-add">+ Create New Notice</a>
+      </div>
+    <% } %>
+  </div>
+
+  <%- include("../include/footer") %>
+</body>
+</html>
+

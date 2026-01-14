@@ -1,0 +1,38 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New form</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<%- include("../include/navbar") %>
+
+<div class="notice-form-container">
+     <h2>Create Notice</h2>
+
+     <form action="/notice" method="POST" class="notice-form">
+
+    
+    <label>Title</label>
+    <input type="text" name="notice[title]" required>
+
+    <label>Description</label>
+    <textarea name="notice[description]" rows="5" required></textarea>
+
+    <label>Image link</label>
+    <input type="text" name="notice[imageUrl]" required>
+
+    <label>Category</label>
+    <select name="notice[category]">
+      <option>Academic</option>
+      <option>Event</option>
+      <option>Hostel</option>
+      <option>Exam</option>
+      <option>General</option>
+    </select>
+
+    <button type="submit">Publish Notice</button>
+  </form>
+</div>
+  <%- include("../include/footer") %>
+
+    

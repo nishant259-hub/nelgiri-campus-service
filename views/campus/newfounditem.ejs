@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>found form</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include("../include/navbar") %>
+<div class="container signup-container">
+  <div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+      <div class="signup-card">
+        <h2 class="signup-title">Report Found Item</h2>
+
+        <form action="/found" method="POST" class="notice-form">
+
+          <label>Title</label>
+          <input type="text" name="foundItem[title]" required>
+
+          <label>Description</label>
+          <textarea name="foundItem[description]" rows="5" required></textarea>
+
+          <label>Location</label>
+          <input type="text" name="foundItem[location]" required>
+
+          <label>Image URL</label>
+          <input type="text" name="foundItem[imageUrl]" placeholder="Optional">
+
+          <label>Contact no:</label>
+          <input type="number" name="foundItem[contact]" placeholder="owner can contact you">
+
+          <button type="submit" class="btn signup-btn w-100">Report</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

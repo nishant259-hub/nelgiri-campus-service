@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Raise Issue</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include("../include/navbar") %>
+
+<div class="notice-form-container">
+  <h2>Raise a Complaint</h2>
+
+  <form action="/issue" method="POST" class="notice-form">
+
+    <label>Title</label>
+    <input type="text" name="complaint[title]" required>
+
+    <label>Description</label>
+    <textarea name="complaint[description]" rows="5" required></textarea>
+
+    <label>Category</label>
+    <select name="complaint[category]">
+      <option>Hostel</option>
+      <option>Academic</option>
+      <option>Infrastructure</option>
+      <option>Security</option>
+      <option>Ragging</option>
+      <option>Other</option>
+    </select>
+
+    <button type="submit">Submit Complaint</button>
+
+  </form>
+</div>
+
+<%- include("../include/footer") %>
+
+</body>
+</html>

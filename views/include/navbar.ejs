@@ -1,0 +1,41 @@
+<!-- Image and text -->
+<nav class="navbar">
+  <div class="nav-left">
+   <i class="fa-solid fa-building-columns nav-icon"></i>
+    <a class="site-name" href="/home">Nilgiri Campus Service</a>
+  </div>
+
+  <div class="navbar-nav ms-auto">
+      <div class="navbar-nav">
+      <% if (showCreateNotice) { %>
+      <a href="/notice/new" class="nav-link admin-btn">+ Create Notice</a>
+      <%} else if (raisecomplain){%>
+       <a href="/issue/new" class="nav-link admin-btn">+ Raise issue</a>
+       <%} else if (lostitem){%>
+       <a href="/lost/new" class="nav-link admin-btn">+ List lost item</a>
+       <%} else if (founditem){%>
+       <a href="/found/new" class="nav-link admin-btn">+ List found item</a>
+       <% } else { %>
+
+        <% if (!currUser) { %>
+   <a href="/signup" class="nav-link">Sign up</a>
+   <a href="/login" class="nav-link">Log in</a>
+   <% } else { %>
+
+   <div class="user-menu">
+   <div class="user-trigger" onclick="toggleUserMenu()">
+    <i class="fa-solid fa-user user-icon"></i>
+    <span class="username"><%= currUser.username %></span>
+   </div>
+
+    <div class="user-dropdown" id="userDropdown">
+    <a href="/logout">Logout</a>
+  </div>
+  <% } %>
+</div>
+
+<% } %>
+
+    </div>
+ </div>
+</nav>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/a13f7f6ee4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="/js/userMenu.js"></script>
+
+
+</head>
+<body>
+    <%- include("../include/navbar") %>
+<% if (error && error.length > 0) { %>
+  <div class="flash-error">
+    <%= error %>
+  </div>
+<% } %>
+
+<% if (success && success.length > 0) { %>
+  <div class="flash-success">
+    <%= success %>
+  </div>
+<% } %>
+
+
+<div id="navbar"></div>
+  <div class="dashboard">
+      <div class="card notice">
+      <a href="/notice">&nbsp; &nbsp; &nbsp;<i class="fa-solid fa-bell"></i><p>All Notice</p></a>
+      </div>
+      <div class="card issue">
+      <a href="/issue">&nbsp; &nbsp; &nbsp; <i class="fa-regular fa-building"></i><p>Complaint</p></a>
+      </div>
+      <div class="card lost">
+      <a href="/lost">&nbsp; &nbsp; &nbsp;<i class="fa-solid fa-circle-info"></i><p>Lost-Item</p></a>
+      </div>
+      <div class="card found">
+      <a href="/found">&nbsp; &nbsp; &nbsp; &nbsp;<i class="fa-solid fa-eye"></i><p>Found-Item</p></a>
+      </div>
+ </div>
+
+   <%- include("../include/footer") %>
+</body>
+</html>

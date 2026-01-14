@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>found-item</title>
+  <link rel="stylesheet" href="/css/lost.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<body>
+    <%- include("../include/navbar") %>
+    
+     <div class="notice-page">
+  <h2>Found Items</h2>
+  <div class="notice-row">
+    <% if(founditems.length === 0){ %>
+      <p style="text-align:center; color:#555;">No found items reported yet</p>
+    <% } %>
+
+    <% for(let item of founditems) { %>
+      <div class="notice-card">
+        <% if(item.imageUrl){ %>
+          <img src="<%= item.imageUrl %>" class="notice-img" alt="<%= item.title %>">
+        <% } else { %>
+          <img src="/images/default-item.png" class="notice-img" alt="No image">
+        <% } %>
+
+        <div class="notice-body">
+          <h3><%= item.title %></h3>
+          <p><b>Description:</b> <%= item.description %></p>
+          <p><b>Location:</b> <%= item.location %></p>
+          <p><b>Contact:</b> <%= item.contact %></p>
+          <p><b>Reported By:</b> <%= item.createdBy.username %></p>
+          <p><b>Date:</b> <%= item.createdAt.toDateString() %></p>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+     <%- include("../include/footer") %>
+</body>
+</html>

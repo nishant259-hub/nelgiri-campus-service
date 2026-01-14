@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Complaints</title>
+  <link rel="stylesheet" href="/css/complaint.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include("../include/navbar") %>
+<% if (error && error.length > 0) { %>
+  <div class="flash-error">
+    <%= error %>
+  </div>
+<% } %>
+
+<% if (success && success.length > 0) { %>
+  <div class="flash-success">
+    <%= success %>
+  </div>
+<% } %>
+
+
+<div class="complaint-container">
+
+  <h2 class="page-title">📢 Complaints</h2>
+
+  <% if (complaints.length === 0) { %>
+    <p class="empty-text">No complaints found</p>
+  <% } %>
+
+  <% complaints.forEach(c => { %>
+    <div class="complaint-card">
+
+      <div class="complaint-header">
+      <h3><%= c.title %></h3>
+
+     <% if (currUser && currUser.role === "admin") { %>
+
+     <form action="/issue/<%= c._id %>/status?_method=PUT"
+          method="POST" class="status-form">
+
+      <select name="status" onchange="this.form.submit()"
+              class="status-select">
+
+        <option value="Pending" <%= c.status==="Pending"?"selected":"" %>>
+          Pending
+        </option>
+
+        <option value="InProgress" <%= c.status==="InProgress"?"selected":"" %>>
+          In Progress
+        </option>
+
+        <option value="Resolved" <%= c.status==="Resolved"?"selected":"" %>>
+          Resolved
+        </option>
+
+      </select>
+     </form>
+
+      <% } else { %>
+
+    <span class="status <%= c.status.toLowerCase() %>">
+      <%= c.status %>
+    </span>
+
+  <% } %>
+ </div>
+
+
+      <p class="complaint-desc"><%= c.description %></p>
+
+      <div class="complaint-footer">
+        <span>
+          👤 Raised by:
+          <b>
+            <%= c.createdBy?.username || "User" %>
+          </b>
+        </span>
+
+        <span>
+          🕒 <%= new Date(c.createdAt).toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+          }) %>
+        </span>
+      </div>
+
+    </div>
+  <% }) %>
+
+</div>
+
+<%- include("../include/footer") %>
+
+</body>
+</html>
+
