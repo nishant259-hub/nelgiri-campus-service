@@ -26,15 +26,15 @@ app.use(express.static("public"));
 
 /* ================= SESSION ================= */
 const store = MongoStore.create({
-  mongoUrl: process.env.ATLAS_DB,
-  touchAfter: 24 * 3600, // 24 hours
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 3600,
 });
 
 store.on("error", (err) => {
   console.log("SESSION STORE ERROR:", err);
 });
 
-const sessionOptions = {
+const sessionConfig = {
   store,
   name: "session",
   secret: process.env.SECRET || "hackathon-secret",
@@ -42,14 +42,14 @@ const sessionOptions = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // HTTPS only in prod
+    secure: process.env.NODE_ENV === "production", // Render = HTTPS
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
   },
 };
 
 app.set("trust proxy", 1); // REQUIRED on Render
-app.use(session(sessionOptions));
+app.use(session(sessionConfig));
 
 /* ================= FLASH ================= */
 const flash = require("connect-flash");
