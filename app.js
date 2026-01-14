@@ -25,19 +25,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 /* ================= SESSION ================= */
-app.use(session({
-  secret: process.env.SESSION_SECRET || "hackathon-secret",
+const store = MongoStore.create({
+  mongoUrl: process.env.ATLAS_DB,
+  touchAfter: 24 * 3600, // 24 hours
+});
+
+store.on("error", (err) => {
+  console.log("SESSION STORE ERROR:", err);
+});
+
+const sessionOptions = {
+  store,
+  name: "session",
+  secret: process.env.SECRET || "hackathon-secret",
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 3600, // update session once per day
-  }),
   cookie: {
     httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-  }
-}));
+    secure: process.env.NODE_ENV === "production", // HTTPS only in prod
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+  },
+};
+
+app.set("trust proxy", 1); // REQUIRED on Render
+app.use(session(sessionOptions));
+
 /* ================= FLASH ================= */
 const flash = require("connect-flash");
 app.use(flash());
