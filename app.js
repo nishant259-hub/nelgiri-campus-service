@@ -13,7 +13,7 @@ app.use(methodOverride("_method"));
 const User = require("./models/user");
 
 
-const dbUrl = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/campus";
+const dbUrl = process.env.MONGO_URI;
 mongoose.connect(dbUrl)
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err));
@@ -52,6 +52,13 @@ app.use((req, res, next) => {
   res.locals.currUser = req.user;   // 👈 MAGIC LINE
   next();
 });
+
+app.use((req, res, next) => {
+  res.locals.error = req.flash("error")
+  res.locals.success = req.flash("success") 
+  next();
+});
+
 
 const ADMIN_GITHUB_IDS = ["YOUR_GITHUB_ID_HERE"];
 
