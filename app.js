@@ -25,24 +25,24 @@ app.use(express.static("public"));
 
 /* ================= SESSION ================= */
 
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session); // ✅ v3 syntax
+// const session = require("express-session");
+// const MongoStore = require("connect-mongo")(session); // ✅ v3 syntax
 
-app.use(session({
-  store: new MongoStore({
-    url: process.env.MONGO_URI,
-    touchAfter: 24 * 3600
-  }),
-  name: "session",
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,
-    secure: false, // Render pe deploy se pehle true kar sakte ho
-    maxAge: 1000 * 60 * 60 * 24 * 7
-  }
-}));
+// app.use(session({
+//   store: new MongoStore({
+//     url: process.env.MONGO_URI,
+//     touchAfter: 24 * 3600
+//   }),
+//   name: "session",
+//   secret: process.env.SECRET,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     httpOnly: true,
+//     secure: false, // Render pe deploy se pehle true kar sakte ho
+//     maxAge: 1000 * 60 * 60 * 24 * 7
+//   }
+// }));
 
 /* ================= PASSPORT ================= */
 app.use(passport.initialize());
