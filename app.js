@@ -14,9 +14,9 @@ const User = require("./models/user");
 
 // ================= MONGOOSE =================
 
-// Local MongoDB ke liye
-mongoose.connect("mongodb://127.0.0.1:27017/campus")
-  .then(() => console.log("MongoDB connected locally"))
+const dbUrl = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/campus";
+mongoose.connect(dbUrl)
+  .then(() => console.log("MongoDB connected"))
   .catch(err => console.log("MongoDB connection error:", err));
 
 
@@ -29,7 +29,7 @@ app.set("view engine", "ejs");
 // ================= SESSION + FLASH =================
 app.use(session({
   store: new MongoStore({
-    url: process.env.MONGO_URI,
+    url: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/campus",
     touchAfter: 24 * 3600
   }),
   name: "session",
