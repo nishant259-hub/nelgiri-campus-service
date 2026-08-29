@@ -136,7 +136,7 @@ app.get("/logout", (req, res, next) => {
 
 
 /* ================= PAGES ================= */
-app.get("/", (req, res) => res.redirect("/home"));
+app.get("/", (req, res) => res.render("campus/landing"));
 
 
 app.get("/home", (req, res) => {

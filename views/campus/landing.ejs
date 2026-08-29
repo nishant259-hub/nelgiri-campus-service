@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Katihar Engineering College</title>
+    <!-- Use Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/landing.css">
+    <script src="https://kit.fontawesome.com/a13f7f6ee4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="landing-body">
+    <%- include("../include/navbar") %>
+
+    <% if (error && error.length > 0) { %>
+      <div class="flash-message flash-error">
+        <%= locals.error %>
+      </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+      <div class="flash-message flash-success">
+        <%= locals.success %>
+      </div>
+    <% } %>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Welcome to <span class="highlight">Katihar Engineering College</span></h1>
+            <p>Empowering the future engineers. A premier institution fostering innovation, discipline, and excellence.</p>
+            <div class="hero-buttons">
+                <% if (!currUser) { %>
+                    <a href="/login" class="btn btn-primary">Login</a>
+                    <a href="/signup" class="btn btn-secondary">Sign Up</a>
+                <% } else { %>
+                    <a href="/home" class="btn btn-primary">Go to Dashboard</a>
+                <% } %>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="College Campus">
+        </div>
+    </div>
+
+    <section class="hostel-section">
+        <h2 class="section-title">Our Hostels</h2>
+        <p class="section-subtitle">Comfortable, secure, and modern living spaces designed for academic success.</p>
+        
+        <div class="hostel-grid">
+            <div class="hostel-card glass">
+                <i class="fa-solid fa-building fa-3x hostel-icon"></i>
+                <h3>Boys Hostel</h3>
+                <p>Equipped with high-speed internet, mess facilities, and 24/7 security. A vibrant community of scholars.</p>
+            </div>
+            
+            <div class="hostel-card glass">
+                <i class="fa-solid fa-building-user fa-3x hostel-icon"></i>
+                <h3>Girls Hostel</h3>
+                <p>Safe and serene environment focusing on student well-being, featuring study rooms and recreational areas.</p>
+            </div>
+        </div>
+    </section>
+
+    <%- include("../include/footer") %>
+</body>
+</html>
