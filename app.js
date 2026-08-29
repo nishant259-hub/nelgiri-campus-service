@@ -30,11 +30,11 @@ const MongoStore = require("connect-mongo")(session); // ✅ v3 syntax
 
 app.use(session({
   store: new MongoStore({
-    url: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/campus",
+    url: process.env.MONGO_URI,
     touchAfter: 24 * 3600
   }),
   name: "session",
-  secret: process.env.SECRET || "hackathon-secret",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
