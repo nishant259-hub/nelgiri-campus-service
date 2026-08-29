@@ -3,39 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Dashboard | KEC Campus Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/a13f7f6ee4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="/js/userMenu.js"></script>
-
-
 </head>
-<body>
+<body style="background-color: #f8fafc;">
     <%- include("../include/navbar") %>
-<% if (error && error.length > 0) { %>
-  <div class="flash-error">
-    <%= locals.error %>
-  </div>
-<% } %>
+    
+    <% if (error && error.length > 0) { %>
+      <div class="flash-message flash-error" style="background:#fee2e2; color:#b91c1c; padding:15px; text-align:center; margin:20px auto; max-width:600px; border-radius:10px; font-weight:600;">
+        <%= locals.error %>
+      </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+      <div class="flash-message flash-success" style="background:#dcfce7; color:#15803d; padding:15px; text-align:center; margin:20px auto; max-width:600px; border-radius:10px; font-weight:600;">
+        <%= locals.success %>
+      </div>
+    <% } %>
 
+    <div style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+        <div style="background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 20px; padding: 40px; color: white; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);">
+            <h1 style="margin:0 0 10px 0; font-size: 2.5rem; font-weight: 700;">Welcome back, <%= currUser ? currUser.username : 'Student' %>! 👋</h1>
+            <p style="margin:0; font-size: 1.1rem; opacity: 0.9;">Access your campus services, view notices, and manage complaints from your control panel.</p>
+        </div>
 
-<div id="navbar"></div>
-  <div class="dashboard">
-      <div class="card notice">
-      <a href="/notice"><i class="fa-solid fa-bell"></i><p>All Notice</p></a>
-      </div>
-      <div class="card issue">
-      <a href="/issue"><i class="fa-regular fa-building"></i><p>Complaint</p></a>
-      </div>
-      <div class="card lost">
-      <a href="/lost"><i class="fa-solid fa-circle-info"></i><p>Lost-Item</p></a>
-      </div>
-      <div class="card found">
-      <a href="/found"><i class="fa-solid fa-eye"></i><p>Found-Item</p></a>
-      </div>
- </div>
+        <h2 style="color: #0f172a; margin-bottom: 20px;">Quick Access</h2>
+        <div class="dashboard" style="margin: 0; max-width: 100%;">
+            <div class="card notice">
+                <a href="/notice">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    <div>
+                        <p style="font-size: 1.2rem; margin-bottom:5px;">Campus Notices</p>
+                        <p style="font-size: 0.9rem; color: #64748b; font-weight: 400;">View official announcements</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="card issue">
+                <a href="/issue">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <p style="font-size: 1.2rem; margin-bottom:5px;">Complaints</p>
+                        <p style="font-size: 0.9rem; color: #64748b; font-weight: 400;">Report hostel/campus issues</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="card lost">
+                <a href="/lost">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <div>
+                        <p style="font-size: 1.2rem; margin-bottom:5px;">Lost Items</p>
+                        <p style="font-size: 0.9rem; color: #64748b; font-weight: 400;">Help find lost belongings</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="card found">
+                <a href="/found">
+                    <i class="fa-solid fa-box-open"></i>
+                    <div>
+                        <p style="font-size: 1.2rem; margin-bottom:5px;">Found Items</p>
+                        <p style="font-size: 0.9rem; color: #64748b; font-weight: 400;">Report things you've found</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 
-   <%- include("../include/footer") %>
+    <%- include("../include/footer") %>
 </body>
 </html>

@@ -16,7 +16,22 @@
 
     <div class="notice-grid">
       <% if (allnotice.length === 0) { %>
-        <p class="no-notice">No notices found.</p>
+        <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #fff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 20px;">
+            <i class="fa-regular fa-folder-open" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+            <h3 style="color: #475569; font-size: 1.5rem; margin-bottom: 10px;">No Notices Yet</h3>
+            <p style="color: #94a3b8; max-width: 400px; margin: 0 auto 30px;">There are currently no official notices or announcements posted by the administration. Check back later!</p>
+            
+            <div style="text-align: left; opacity: 0.5; filter: grayscale(100%); pointer-events: none;">
+                <p style="text-align:center; font-weight:bold; margin-bottom: 20px; color: #94a3b8;">Demo Notice Look:</p>
+                <div class="notice-card" style="max-width: 350px; margin: 0 auto; box-shadow: none; border: 1px dashed #cbd5e1;">
+                    <div class="notice-content">
+                        <h3 class="notice-title">Mid-Semester Exam Schedule</h3>
+                        <p class="notice-description">Exams will begin next week. Please carry your ID cards.</p>
+                        <p class="notice-meta"><span class="category">Academic</span> | <span><%= new Date().toDateString() %></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
       <% } else { %>
         <% allnotice.forEach(notice => { %>
           <div class="notice-card">

@@ -27,7 +27,26 @@
   <h2 class="page-title">📢 Complaints</h2>
 
   <% if (complaints.length === 0) { %>
-    <p class="empty-text">No complaints found</p>
+    <div class="empty-state" style="text-align: center; padding: 60px 20px; background: #fff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 20px;">
+        <i class="fa-regular fa-face-smile" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+        <h3 style="color: #475569; font-size: 1.5rem; margin-bottom: 10px;">All Good Here!</h3>
+        <p style="color: #94a3b8; max-width: 400px; margin: 0 auto 30px;">There are no active complaints on campus right now. Everything is running smoothly!</p>
+        
+        <div style="text-align: left; opacity: 0.5; filter: grayscale(100%); pointer-events: none;">
+            <p style="text-align:center; font-weight:bold; margin-bottom: 20px; color: #94a3b8;">Demo Complaint Look:</p>
+            <div class="complaint-card" style="max-width: 450px; margin: 0 auto; box-shadow: none; border: 1px dashed #cbd5e1;">
+                <div class="complaint-header">
+                    <h3>Water Cooler Not Working</h3>
+                    <span class="status pending">Pending</span>
+                </div>
+                <p class="complaint-desc">The water cooler on the ground floor of the hostel is dispensing hot water.</p>
+                <div class="complaint-footer">
+                    <span>👤 Raised by: <b>Admin</b></span>
+                    <span>🕒 <%= new Date().toLocaleDateString() %></span>
+                </div>
+            </div>
+        </div>
+    </div>
   <% } %>
 
   <% complaints.forEach(c => { %>

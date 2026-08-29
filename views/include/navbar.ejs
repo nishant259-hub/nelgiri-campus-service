@@ -1,41 +1,48 @@
-<!-- Image and text -->
+<!-- Premium Navbar Redesign -->
 <nav class="navbar">
   <div class="nav-left">
-   <i class="fa-solid fa-building-columns nav-icon"></i>
-    <a class="site-name" href="/">Nilgiri Campus Service</a>
+    <i class="fa-solid fa-building-columns nav-icon"></i>
+    <a class="site-name" href="/">KEC Campus Service</a>
   </div>
 
   <div class="navbar-nav ms-auto">
-      <div class="navbar-nav">
-      <% if (showCreateNotice) { %>
-      <a href="/notice/new" class="nav-link admin-btn">+ Create Notice</a>
-      <%} else if (raisecomplain){%>
-       <a href="/issue/new" class="nav-link admin-btn">+ Raise issue</a>
-       <%} else if (lostitem){%>
-       <a href="/lost/new" class="nav-link admin-btn">+ List lost item</a>
-       <%} else if (founditem){%>
-       <a href="/found/new" class="nav-link admin-btn">+ List found item</a>
-       <% } else { %>
+    <% if (typeof showCreateNotice !== 'undefined' && showCreateNotice) { %>
+      <a href="/notice/new" class="nav-link admin-btn"><i class="fa-solid fa-plus"></i> Create Notice</a>
+    <% } else if (typeof raisecomplain !== 'undefined' && raisecomplain) { %>
+      <a href="/issue/new" class="nav-link admin-btn"><i class="fa-solid fa-plus"></i> Raise Issue</a>
+    <% } else if (typeof lostitem !== 'undefined' && lostitem) { %>
+      <a href="/lost/new" class="nav-link admin-btn"><i class="fa-solid fa-plus"></i> List Lost Item</a>
+    <% } else if (typeof founditem !== 'undefined' && founditem) { %>
+      <a href="/found/new" class="nav-link admin-btn"><i class="fa-solid fa-plus"></i> List Found Item</a>
+    <% } %>
 
-        <% if (!currUser) { %>
-   <a href="/signup" class="nav-link">Sign up</a>
-   <a href="/login" class="nav-link">Log in</a>
-   <% } else { %>
-
-   <div class="user-menu">
-   <div class="user-trigger" onclick="toggleUserMenu()">
-    <i class="fa-solid fa-user user-icon"></i>
-    <span class="username"><%= currUser.username %></span>
-   </div>
-
-    <div class="user-dropdown" id="userDropdown">
-    <a href="/logout">Logout</a>
+    <% if (!currUser) { %>
+      <div class="auth-buttons" style="display:flex; gap: 10px; margin-left: 20px;">
+        <a href="/login" class="nav-link auth-link">Log in</a>
+        <a href="/signup" class="nav-link auth-link signup-btn" style="background:#6366f1; color:white; border-radius:30px; padding: 10px 20px;">Sign up</a>
+      </div>
+    <% } else { %>
+      <div class="user-menu" style="margin-left: 20px;">
+        <div class="user-trigger" onclick="toggleUserMenu()" style="display:flex; align-items:center; gap:8px; cursor:pointer; background:#f1f5f9; padding:8px 16px; border-radius:20px; color:#475569; font-weight:600;">
+          <i class="fa-solid fa-user-circle" style="font-size:1.2rem; color:#6366f1;"></i>
+          <span class="username"><%= currUser.username %></span>
+          <i class="fa-solid fa-chevron-down" style="font-size:0.8rem; margin-left:5px;"></i>
+        </div>
+        <div class="user-dropdown" id="userDropdown" style="display:none; position:absolute; right:40px; top:70px; background:white; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.1); padding:10px; min-width:150px; z-index:1001;">
+          <a href="/logout" style="display:block; padding:10px; color:#ef4444; text-decoration:none; font-weight:600; text-align:center; border-radius:8px; transition:background 0.3s;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+        </div>
+      </div>
+    <% } %>
   </div>
-  <% } %>
-</div>
-
-<% } %>
-
-    </div>
- </div>
 </nav>
+
+<script>
+  function toggleUserMenu() {
+    const dropdown = document.getElementById('userDropdown');
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+      dropdown.style.display = 'block';
+    } else {
+      dropdown.style.display = 'none';
+    }
+  }
+</script>
