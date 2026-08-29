@@ -254,7 +254,7 @@ body, html {
   text-align: center;
   font-size: 28px;
   font-weight: 700;
-  color: rgb(96, 6, 6);
+  color: #6366f1;
   margin-bottom: 8px;
 }
 
@@ -280,12 +280,12 @@ body, html {
 }
 
 .login-card .form-control:focus {
-  border-color: rgb(96, 6, 6);
-  box-shadow: 0 0 0 0.25rem rgba(96, 6, 6, 0.2);
+  border-color: #6366f1;
+  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.2);
 }
 
 .login-btn{
-  background: rgb(96, 6, 6);
+  background: #6366f1;
   color: white;
   font-weight: 700;
   padding: 14px;
@@ -299,7 +299,7 @@ body, html {
 .login-btn:hover {
   background: #7a0a0a;
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(96, 6, 6, 0.35);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
 }
 
 /* Mobile responsive tweaks */
@@ -326,7 +326,7 @@ body, html {
 .github-btn:hover {
  background: #7a0a0a;
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(96, 6, 6, 0.35);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
 }
 .github-btn {
   display: flex;
@@ -366,7 +366,7 @@ body, html {
   text-align: center;
   font-size: 28px;
   font-weight: 700;
-  color: rgb(96, 6, 6);
+  color: #6366f1;
   margin-bottom: 8px;
 }
 
@@ -394,12 +394,12 @@ body, html {
 
 .signup-card .form-control:focus,
 .signup-card .form-select:focus {
-  border-color: rgb(96, 6, 6);
-  box-shadow: 0 0 0 0.25rem rgba(96, 6, 6, 0.2);
+  border-color: #6366f1;
+  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.2);
 }
 
 .signup-btn {
-  background: rgb(96, 6, 6);
+  background: #6366f1;
   color: white;
   font-weight: 700;
   padding: 14px;
@@ -413,7 +413,7 @@ body, html {
 .signup-btn:hover {
   background: #7a0a0a;
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(96, 6, 6, 0.35);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
 }
 
 /* Optional: Add some spacing at bottom for mobile */
