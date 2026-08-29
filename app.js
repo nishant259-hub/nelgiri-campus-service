@@ -2,63 +2,67 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const session = require("express-session");
+const flash = require("connect-flash");
+const MongoStore = require("connect-mongo")(session); // v3 syntax for session store
 const passport = require("passport");
-
-const GitHubStrategy = require("passport-github2").Strategy;
 const LocalStrategy = require("passport-local");
-
-
+const GitHubStrategy = require("passport-github2").Strategy;
 const methodOverride = require("method-override");
-app.use(methodOverride("_method"));
+
 const User = require("./models/user");
 
+// ================= MONGOOSE =================
 
-const dbUrl = process.env.MONGO_URI;
-mongoose.connect(dbUrl)
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.log(err));
+// Local MongoDB ke liye
+mongoose.connect("mongodb://127.0.0.1:27017/campus")
+  .then(() => console.log("MongoDB connected locally"))
+  .catch(err => console.log("MongoDB connection error:", err));
 
 
-app.set("view engine", "ejs");
+// ================= MIDDLEWARE =================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(methodOverride("_method"));
+app.set("view engine", "ejs");
 
-/* ================= SESSION ================= */
-
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session); // ✅ v3 syntax
-
+// ================= SESSION + FLASH =================
 app.use(session({
   store: new MongoStore({
     url: process.env.MONGO_URI,
     touchAfter: 24 * 3600
   }),
   name: "session",
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || "hackathon-secret",
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false, // Render pe deploy se pehle true kar sakte ho
     maxAge: 1000 * 60 * 60 * 24 * 7
   }
 }));
+app.use(flash());
 
-/* ================= PASSPORT ================= */
+// ================= PASSPORT =================
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  res.locals.currUser = req.user;   // 👈 MAGIC LINE
-  next();
-});
+passport.use(new LocalStrategy(User.authenticate()));
 
-app.use((req, res, next) => {
-  res.locals.error = req.flash("error")
-  res.locals.success = req.flash("success") 
-  next();
-});
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
+// ================= FLASH + CURRENT USER =================
+app.use((req, res, next) => {
+    res.locals.currUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    res.locals.showCreateNotice = false;
+    res.locals.raisecomplain = false;
+    res.locals.lostitem = false;
+    res.locals.founditem = false;
+    next();
+});
 
 const ADMIN_GITHUB_IDS = ["YOUR_GITHUB_ID_HERE"];
 

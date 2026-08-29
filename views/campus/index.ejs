@@ -13,7 +13,7 @@
 </head>
 <body>
     <%- include("../include/navbar") %>
-<% if (locals.error && locals.error.length > 0) { %>
+<% if (error && error.length > 0) { %>
   <div class="flash-error">
     <%= locals.error %>
   </div>

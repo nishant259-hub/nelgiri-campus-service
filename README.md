@@ -1,5 +1,7 @@
 # Nelgiri Campus Service
 
+> **Note:** This project was developed during the **Techfusion '25** college hackathon by a B.Tech 1st-year team.
+
 A web application designed for campus management, providing a unified platform for students and administration. Built with Node.js, Express, MongoDB, and EJS.
 
 ## Features
