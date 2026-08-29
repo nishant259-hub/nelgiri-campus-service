@@ -37,13 +37,13 @@
 .notice-form input:focus,
 .notice-form textarea:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #6366f1;
 }
 
 .notice-form button {
   width: 100%;
   padding: 12px;
-  background-color: #2563eb;
+  background-color: #6366f1;
   color: white;
   border: none;
   border-radius: 10px;
@@ -54,7 +54,7 @@
 }
 
 .notice-form button:hover {
-  background-color: #1e40af;
+  background-color: #4f46e5;
 }
 
 .notice-row {
@@ -98,5 +98,5 @@
 }
 
 .notice-body b {
-  color: #1e40af;
+  color: #6366f1;
 }

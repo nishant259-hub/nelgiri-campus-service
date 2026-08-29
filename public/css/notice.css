@@ -47,24 +47,24 @@
 
 .notice-title {
   font-size: 1.3rem;
-  color: #192a56;
+  color: #0f172a;
   margin-bottom: 8px;
 }
 
 .notice-description {
   font-size: 1rem;
-  color: #353b48;
+  color: #475569;
   margin-bottom: 12px;
 }
 
 .notice-meta {
   font-size: 0.85rem;
-  color: #718093;
+  color: #64748b;
 }
 
 .notice-meta .category {
   font-weight: 600;
-  color: #44bd32;
+  color: #6366f1;
 }
 
 /* Add Notice Button */
@@ -75,7 +75,7 @@
 
 .btn-add {
   padding: 12px 25px;
-  background-color: #44bd32;
+  background-color: #6366f1;
   color: #fff;
   border-radius: 10px;
   font-weight: 600;
@@ -84,7 +84,7 @@
 }
 
 .btn-add:hover {
-  background-color: #4cd137;
+  background-color: #4f46e5;
 }
 
 /* Form Card */
@@ -126,14 +126,14 @@
 .notice-form input:focus,
 .notice-form textarea:focus,
 .notice-form select:focus {
-  border-color: #44bd32;
+  border-color: #6366f1;
   outline: none;
 }
 
 .btn-submit {
   width: 100%;
   padding: 12px;
-  background-color: #44bd32;
+  background-color: #6366f1;
   color: #fff;
   border-radius: 10px;
   font-size: 1.1rem;
@@ -144,7 +144,7 @@
 }
 
 .btn-submit:hover {
-  background-color: #4cd137;
+  background-color: #4f46e5;
   transform: translateY(-2px);
 }
 
